@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block container %}
+<h1>Search</h1>
+
+<form class="form-inline" id="search" method="get" action="/search">
+  <label class="sr-only" for="q">Search</label>
+  <input type="text" class="form-control mb-2 mr-sm-2" id="q" name="q" placeholder="Ищите" value="{{q}}">
+  <button type="submit" class="btn btn-primary mb-2">Поиск</button>
+</form>
+<h1>Results</h1>
+<ol>
+  {% for item in result %}
+  <li>
+    {{item}}
+  </li>
+  {% endfor %}
+</ol>
+
+{% endblock %}
