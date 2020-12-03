@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 app = Flask(__name__)
 
 @app.route('/')
@@ -11,6 +11,12 @@ def get_search_results(q):
     else:
         result = ["Jerry"]
     return result
+
+@app.route('/api/search', methods=["get", "post"])
+def api_search():
+    q = request.values.get("q", "")
+    result = get_search_results(q)
+    return jsonify({'results': result})
 
 @app.route('/search', methods=["get", "post"])
 def search():
